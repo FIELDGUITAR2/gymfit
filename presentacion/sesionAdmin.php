@@ -8,5 +8,5 @@ $admin->consultarPorId();
 ?>
 <body>
 <?php include 'presentacion/menuAdministrador.php'; ?>
-<!-- otros -->
+<!-- otros jaja -->
 </body>
