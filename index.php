@@ -68,6 +68,7 @@ require ("logica/Especialidad.php");
             /* Hace que la imagen no se deforme */
             width: 100%;
             /* Ocupa todo el ancho */
+            /*quien sabe*/
         }
     </style>
 
