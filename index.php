@@ -1,5 +1,10 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 session_start();
+
+require ("logica/Admin.php");
 
 /*
 require ("logica/Especialidad.php");
@@ -83,6 +88,7 @@ $paginas_sin_autenticacion = array(
 
 $paginas_con_autenticacion = array(
 
+    "presentacion/sesionAdmin.php",
     /*"presentacion/sesionMedico.php",
     "presentacion/sesionPaciente.php",
     "presentacion/cita/consultarCita.php",

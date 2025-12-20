@@ -1,42 +1,106 @@
 <?php
 require_once("persistencia/Conexion.php");
+require_once("logica/Persona.php");
 require_once("persistencia/AdminDAO.php");
 
-class Admin extends Persona {
+class Admin extends Persona
+{
 
-    public function __construct($id=0, $nombre="", $apellido="", $correo="", $clave=""){
+    private $qr;
+    private $telefono;
+    private $foto;
+
+    public function __construct($id = 0, $nombre = "", $apellido = "", $correo = "", $clave = "", $telefono = "", $qr = "", $foto = "")
+    {
         parent::__construct($id, $nombre, $apellido, $correo, $clave);
+        $this->telefono = $telefono;
+        $this->qr = $qr;
+        $this->foto = $foto;
     }
-    
-    public function autenticar(){
+
+
+    /**
+     * Get the value of qr
+     */
+    public function getQr()
+    {
+        return $this->qr;
+    }
+
+    /**
+     * Set the value of qr
+     *
+     * @return  self
+     */
+    public function setQr($qr)
+    {
+        $this->qr = $qr;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of telefono
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    /**
+     * Set the value of telefono
+     *
+     * @return  self
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of foto
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+
+    /**
+     * Set the value of foto
+     *
+     * @return  self
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+
+        return $this;
+    }
+
+    public function autenticar()
+    {
         $conexion = new Conexion();
-        $conexion -> abrir();
-        $adminDAO = new AdminDAO("", "", "", $this -> correo, $this -> clave);
-        $conexion -> ejecutar($adminDAO -> autenticar());
-        $tupla = $conexion -> registro();
-        $conexion -> cerrar();
-        if($tupla != null){
-            $this -> id = $tupla[0];
+        $adminDAO = new AdminDAO(
+            "",
+            "",
+            "",
+            $this->getCorreo(),
+            $this->getClave()
+        );
+        $conexion->abrir();
+        $conexion->ejecutar($adminDAO->autenticar());
+        if ($conexion->filas() > 0) {
+            $registro = $conexion->registro();
+            $this->setId($registro[0]);
+            $conexion->cerrar();
             return true;
-        }else{
+        } else {
+            $conexion->cerrar();
             return false;
         }
     }
-    
-    public function consultarPorId(){
-        $conexion = new Conexion();
-        $conexion -> abrir();
-        $adminDAO = new AdminDAO($this -> id);
-        $conexion -> ejecutar($adminDAO -> consultarPorId());
-        $tupla = $conexion -> registro();
-        $conexion -> cerrar();
-        $this -> nombre = $tupla[0];
-        $this -> apellido = $tupla[1];
-        $this -> correo = $tupla[2];
-    }
-    
+    //hola
+
 }
-//hola
-
-
-?>
