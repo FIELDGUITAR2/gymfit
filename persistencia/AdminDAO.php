@@ -24,5 +24,10 @@ class AdminDAO {
     {
         return "select id_admin from admin where correo = '".$this->correo."' and clave = md5('".$this->clave."');";
     }
+
+    public function consultar()
+    {
+        return "select nombre, apellido from admin where id_admin = " . $this->id . ";";
+    }
 }
 

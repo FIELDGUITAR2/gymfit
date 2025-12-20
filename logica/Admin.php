@@ -101,6 +101,25 @@ class Admin extends Persona
             return false;
         }
     }
+    public function consultar()
+    {
+        $conexion = new Conexion();
+        $adminDAO = new AdminDAO(
+            $this->getId()
+        );
+        $conexion->abrir();
+        $conexion->ejecutar($adminDAO->consultar());
+        if ($conexion->filas() > 0) {
+            $registro = $conexion->registro();
+            $this->setNombre($registro[0]);
+            $this->setApellido($registro[1]);
+            $conexion->cerrar();
+            return true;
+        } else {
+            $conexion->cerrar();
+            return false;
+        }
+    }
     //hola
 
 }
