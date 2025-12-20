@@ -23,7 +23,7 @@
 	<header class="hero text-dark text-center">
 		<h1>Bienvenido a GymFit</h1>
 		<p class="lead">Convierte tu energía en resultados</p>
-		<a href="#" class="btn btn-hero btn-lg mt-3">Únete Ahora</a>
+		<a href="?pid=<?php echo base64_encode('presentacion/autenticar.php') ?>" class="btn btn-hero btn-lg mt-3">Únete Ahora</a>
 	</header>
 
 	<div id="carouselGymFit" class="carousel slide" data-bs-ride="carousel">

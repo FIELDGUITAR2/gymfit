@@ -77,11 +77,8 @@ require ("logica/Especialidad.php");
 <?php
 
 $paginas_sin_autenticacion = array(
-    "presentacion/inicio.php"
-    /*
     "presentacion/autenticar.php",
-    ,
-    */
+    "presentacion/inicio.php"
 );
 
 $paginas_con_autenticacion = array(
