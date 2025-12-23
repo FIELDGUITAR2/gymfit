@@ -7,12 +7,11 @@ class Conexion
 
     public function abrir()
     {
-        /*if($_SERVER['REMOTE_ADDR'] == "::1"){
+        if($_SERVER['REMOTE_ADDR'] == "::1"){
             $this -> conexion = new mysqli("localhost", "root", "", "gymfit");
         }else{
-            $this -> conexion = new mysqli("localhost", "itiud_cocinaetilica", "UXpieQ728%", "itiud_cocinaetilica");
-        }*/
-        $this->conexion = new mysqli("localhost", "root", "", "gymfit");
+            $this -> conexion = new mysqli("sql211.infinityfree.com", "if0_40714857", "q0Lbvh0J8K", "f0_40714857_gymfit");
+        }
     }
 
     public function cerrar()

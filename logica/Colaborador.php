@@ -1,4 +1,5 @@
 <?php
+    require_once('persistencia/Conexion.php');
     require_once("persistencia/ColaboradorDAO.php");
     require_once("logica/Persona.php");
     class Colaborador extends Persona {
@@ -14,12 +15,12 @@
         {
             parent::__construct($id, $nombre, $apellido, $correo, $clave);
             $this->salario = $salario;
-            $this->telefono = "";
-            $this->direccion = "";
-            $this->foto = "";
-            $this->estado = "";
-            $this->tip_id = "";
-            $this->numero_id = "";
+            $this->telefono = $telefono;
+            $this->direccion = $direccion;
+            $this->foto = $foto;
+            $this->estado = $estado;
+            $this->tip_id = $tip_id;
+            $this->numero_id = $numero_id;
         }
 
         public function getTelefono() {
@@ -76,6 +77,33 @@
 
         public function setSalario($salario) {
             $this->salario = $salario;
+        }
+
+        public function consultarLista()
+        {
+            $conexion = new Conexion;
+            $colaboradorDAO = new ColaboradorDAO();
+            $conexion->abrir();
+            $conexion->ejecutar($colaboradorDAO->consultarLista());
+            $colaboradores = array();
+            while (($resultado = $conexion->registro()) != null) {
+                $colaborador = new Colaborador(
+                    $resultado[0], 
+                    $resultado[1], 
+                    $resultado[2], 
+                    $resultado[3], 
+                    "", 
+                    $resultado[5], 
+                    $resultado[4],
+                    $resultado[6], 
+                    $resultado[10], 
+                    $resultado[9], 
+                    $resultado[8], 
+                    $resultado[7]);
+                array_push($colaboradores, $colaborador);
+            }
+            $conexion->cerrar();
+            return $colaboradores;
         }
     }
 ?>

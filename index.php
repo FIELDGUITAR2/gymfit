@@ -5,7 +5,7 @@ ini_set('display_errors', '1');
 session_start();
 
 require ("logica/Admin.php");
-
+require ("logica/Colaborador.php");
 /*
 require ("logica/Especialidad.php");
 */

@@ -94,6 +94,23 @@ class ColaboradorDAO extends Persona
 
     public function consultarLista()
     {
-        return "";
+        return "select 
+                c.id_colaborador,
+                c.nombre,
+                c.apellido,
+                c.correo,
+                c.telefono,
+                c.salario,
+                c.direccion,
+                c.n_identificacion,
+                ti.nombre as `tipo id`,
+                ec.nombre as estado,
+                c.foto
+                from
+                colaborador c
+                INNER JOIN 
+                estado_colaborador ec on c.id_estado_colaborador = ec.id_estado_colaborador
+                INNER JOIN
+                tipo_id ti on c.id_tipo_id = ti.id_tipo";
     }
 }

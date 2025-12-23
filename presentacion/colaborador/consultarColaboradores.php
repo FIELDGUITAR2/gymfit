@@ -33,13 +33,28 @@ if ($_SESSION["rol"] != "admin") {
                                         <th scope="col">Correo</th>
                                         <th scope="col">Telefono</th>
                                         <th scope="col">Direccion</th>
+                                        <th scope="col">Estado</th>
                                         <th scope="col">Salario</th>
                                         <th scope="col">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $colaboradores = $controladorColaborador->consultarColaboradores();
+                                        $colaborador = new Colaborador();
+                                        $colaboradores = $colaborador->consultarLista();
+                                        foreach ($colaboradores as $colaboradorActual) {
+                                            echo "<tr>";
+                                            echo "<td>" . $colaboradorActual->getId() . "</td>";
+                                            echo "<td>" . $colaboradorActual->getNombre() . "</td>";
+                                            echo "<td>" . $colaboradorActual->getApellido() . "</td>";
+                                            echo "<td>" . $colaboradorActual->getCorreo() . "</td>";
+                                            echo "<td>" . $colaboradorActual->getTelefono() . "</td>";
+                                            echo "<td>" . $colaboradorActual->getDireccion() . "</td>";
+                                            echo "<td>" . $colaboradorActual->getEstado() . "</td>";
+                                            echo "<td>" . $colaboradorActual->getSalario() . "</td>";
+                                            echo "<td><a href='?pid=" . base64_encode("presentacion/colaborador/actualizarColaborador.php") . "&idColaborador=" . $colaboradorActual->getId() . "' class='btn btn-warning'>Actualizar</a></td>";
+                                            echo "</tr>";
+                                        }
                                     ?>
 
                                 </tbody>
