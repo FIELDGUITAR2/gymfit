@@ -24,8 +24,14 @@ $_SESSION["apellido"] = $admin->getApellido();
 
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-					<a class="nav-link active" href="?pid=<?php echo base64_encode("presentacion/dashboard.php"); ?>">
-						Dashboard
+					<a class="nav-link active" href="?pid=<?php echo base64_encode("presentacion/sesionAdmin.php"); ?>">
+						Inicio
+					</a>
+				</li>	
+			
+				<li class="nav-item">
+					<a class="nav-link active" href="?pid=<?php echo base64_encode("presentacion/colaborador/consultarColaboradores.php"); ?>">
+						Colaboradores
 					</a>
 				</li>
 
@@ -58,7 +64,7 @@ $_SESSION["apellido"] = $admin->getApellido();
 				</li>
 
 				<li class="nav-item">
-					<a class="btn btn-danger ms-2" href="?pid=<?php echo base64_encode("presentacion/salir.php"); ?>">
+					<a class="btn btn-danger ms-2" href="?pid=<?php echo base64_encode("presentacion/autenticar.php"); ?>&sesion=false">
 						Cerrar Sesión
 					</a>
 				</li>

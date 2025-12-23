@@ -89,6 +89,7 @@ $paginas_sin_autenticacion = array(
 $paginas_con_autenticacion = array(
 
     "presentacion/sesionAdmin.php",
+    "presentacion/colaborador/consultarColaboradores.php",
     /*"presentacion/sesionMedico.php",
     "presentacion/sesionPaciente.php",
     "presentacion/cita/consultarCita.php",
