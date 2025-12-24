@@ -64,7 +64,7 @@ $_SESSION["apellido"] = $admin->getApellido();
 				</li>
 
 				<li class="nav-item">
-					<a class="btn btn-danger ms-2" href="?pid=<?php echo base64_encode("presentacion/autenticar.php"); ?>&sesion=false">
+					<a class="btn btn-danger ms-2" href="?pid=<?php echo base64_encode("presentacion/cerrar.php"); ?>&sesion=false">
 						Cerrar Sesión
 					</a>
 				</li>

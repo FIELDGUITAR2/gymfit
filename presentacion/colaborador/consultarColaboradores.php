@@ -2,6 +2,11 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
+if (!isset($_SESSION["id"])) {
+    header("Location: login.php");
+    exit();
+}
+
 if ($_SESSION["rol"] != "admin") {
     header('Location: ?pid=' . base64_encode("noAutorizado.php"));
 }
@@ -23,8 +28,7 @@ if ($_SESSION["rol"] != "admin") {
                         <p class="card-text">
                         <div
                             class="table-responsive">
-                            <table
-                                class="table table-primary">
+                            <table class="table table-primary">
                                 <thead>
                                     <tr>
                                         <th scope="col">Id Colaborador</th>
@@ -38,27 +42,61 @@ if ($_SESSION["rol"] != "admin") {
                                         <th scope="col">Opciones</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
                                     <?php
-                                        $colaborador = new Colaborador();
-                                        $colaboradores = $colaborador->consultarLista();
-                                        foreach ($colaboradores as $colaboradorActual) {
-                                            echo "<tr>";
-                                            echo "<td>" . $colaboradorActual->getId() . "</td>";
-                                            echo "<td>" . $colaboradorActual->getNombre() . "</td>";
-                                            echo "<td>" . $colaboradorActual->getApellido() . "</td>";
-                                            echo "<td>" . $colaboradorActual->getCorreo() . "</td>";
-                                            echo "<td>" . $colaboradorActual->getTelefono() . "</td>";
-                                            echo "<td>" . $colaboradorActual->getDireccion() . "</td>";
-                                            echo "<td>" . $colaboradorActual->getEstado() . "</td>";
-                                            echo "<td>" . $colaboradorActual->getSalario() . "</td>";
-                                            echo "<td><a href='?pid=" . base64_encode("presentacion/colaborador/actualizarColaborador.php") . "&idColaborador=" . $colaboradorActual->getId() . "' class='btn btn-warning'>Actualizar</a></td>";
-                                            echo "</tr>";
-                                        }
-                                    ?>
+                                    $colaborador = new Colaborador();
+                                    $colaboradores = $colaborador->consultarLista();
 
+                                    foreach ($colaboradores as $colaboradorActual) {
+
+                                        $modalId = "modal" . $colaboradorActual->getId();
+
+                                        echo "<tr>";
+                                        echo "<td>" . $colaboradorActual->getId() . "</td>";
+                                        echo "<td>" . $colaboradorActual->getNombre() . "</td>";
+                                        echo "<td>" . $colaboradorActual->getApellido() . "</td>";
+                                        echo "<td>" . $colaboradorActual->getCorreo() . "</td>";
+                                        echo "<td>" . $colaboradorActual->getTelefono() . "</td>";
+                                        echo "<td>" . $colaboradorActual->getDireccion() . "</td>";
+                                        echo "<td>" . $colaboradorActual->getEstado() . "</td>";
+                                        echo "<td>" . $colaboradorActual->getSalario() . "</td>";
+                                        echo "<td>
+                                                <button type='button' class='btn btn-primary' 
+                                                    data-bs-toggle='modal' data-bs-target='#$modalId'>
+                                                    Editar
+                                                </button>
+                                              </td>";
+                                        echo "</tr>";
+                                        // Modal único por colaborador
+                                        echo "
+                                                <div class='modal fade' id='$modalId' tabindex='-1'>
+                                                    <div class='modal-dialog'>
+                                                        <div class='modal-content'>
+
+                                                            <div class='modal-header'>
+                                                                <h5 class='modal-title'>Editar Colaborador #" . $colaboradorActual->getId() . "</h5>
+                                                                <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
+                                                            </div>
+
+                                                            <div class='modal-body'>
+                                                                <p>Aquí va el formulario de edición.</p>
+                                                            </div>
+
+                                                            <div class='modal-footer'>
+                                                                <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cerrar</button>
+                                                                <button type='button' class='btn btn-primary'>Guardar cambios</button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                ";
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
+
                         </div>
                         </p>
                     </div>
@@ -69,7 +107,5 @@ if ($_SESSION["rol"] != "admin") {
         </div>
 
     </div>
-
-
 
 </body>

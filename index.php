@@ -6,6 +6,7 @@ session_start();
 
 require ("logica/Admin.php");
 require ("logica/Colaborador.php");
+require ("logica/Usuario.php");
 /*
 require ("logica/Especialidad.php");
 */
@@ -83,7 +84,8 @@ require ("logica/Especialidad.php");
 
 $paginas_sin_autenticacion = array(
     "presentacion/autenticar.php",
-    "presentacion/inicio.php"
+    "presentacion/inicio.php",
+    "presentacion/cerrar.php"
 );
 
 $paginas_con_autenticacion = array(
