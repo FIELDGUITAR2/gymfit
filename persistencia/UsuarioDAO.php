@@ -1,7 +1,7 @@
 <?php
 
     require_once ('logica/Persona.php');
-        class Usuario extends Persona{
+        class UsuarioDAO extends Persona{
         private $deuda;
         private $foto;
         private $estado;
@@ -178,7 +178,7 @@
 
         public function consultarPorNombre()
         {
-            
+
         }
     }
 ?>
